@@ -789,18 +789,16 @@ struct Tav* check_colon_list(char* heap_file, struct Tav* head, int length)
 	return head;
 }
 
-int valid_path(char* heap_file, int length, char* last_key_given, int keys_given/*the amount of keys entered*/, struct Key* head)
+int valid_path(char* heap_file, int length, char* command, int keys_given/*the amount of keys entered*/)
 {
-	struct Key* temp = head;
 	int i = 0, j = 0, count_mesulsal = 0, keys_passed = 0, string_length = 0;
 	char* ptr = NULL;
+	char* token = strtok(command , ",");
 
 	while (1)
 	{
-
 		for (i = 0; i < length; i++)
 		{
-
 			if (heap_file[i] == '{')
 				count_mesulsal++;
 
@@ -827,17 +825,17 @@ int valid_path(char* heap_file, int length, char* last_key_given, int keys_given
 
 			if (ptr != NULL)
 			{
-				if (strcmp(ptr, temp->name) == 0) // checking if we didn't passed again on the same key - the name of the key could be also some value.....
+				if (strcmp(ptr, token) == 0) //compparing the string to the command entered
 				{
-					if (strcmp(ptr, last_key_given) == 0)
+					token = strtok(NULL, ",");
+
+					if (!token) //if token is NULL
 					{
 						if (!(keys_given - count_mesulsal)) //hefresh needs to be equals to 0
 							return 1;
 
 						return 0;
 					}
-
-					temp = temp->next;
 				}
 
 				free(ptr); //freeing to save some memory (:

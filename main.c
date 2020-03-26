@@ -29,6 +29,7 @@ int main(int argc, char* argv[]) // array of strings...
 	struct Value* value_temp = NULL;
 	int i = 0 , j = 0, keys_given = 0, value_founded = 0;
 	char command[NAME_SIZE];
+	char temp_command[NAME_SIZE];
 
 	if (argc != NUM_INPUT)
 	{
@@ -70,7 +71,7 @@ int main(int argc, char* argv[]) // array of strings...
 	key_temp = key_head;
 	
 	value_temp = value_head;
-
+	
 	system("clear");
 
 	while (1)
@@ -93,6 +94,8 @@ int main(int argc, char* argv[]) // array of strings...
 			break;
 		}
 
+		strncpy(temp_command, command, NAME_SIZE); //another copy of the command from stdin
+
 		token = strtok(command, ",");
 
 		while (token != NULL)
@@ -105,7 +108,7 @@ int main(int argc, char* argv[]) // array of strings...
 
 				if (token == NULL)
 				{
-					if (valid_path(heap_file, file_length, key_temp->name, keys_given, key_head)) //check for valid path --------------------
+					if (valid_path(heap_file, file_length, temp_command, keys_given)) //check for valid path --------------------
 					{	
 						switch (value_temp->type)
 						{
