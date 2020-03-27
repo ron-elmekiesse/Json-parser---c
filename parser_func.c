@@ -789,8 +789,9 @@ struct Tav* check_colon_list(char* heap_file, struct Tav* head, int length)
 	return head;
 }
 
-int valid_path(char* heap_file, int length, char* command, int keys_given/*the amount of keys entered*/)
+int valid_path(char* heap_file, int length, char* command, int keys_given/*the amount of keys entered*/, struct Key* head)
 {
+	struct Key* temp = head;
 	int i = 0, j = 0, count_mesulsal = 0, keys_passed = 0, string_length = 0;
 	char* ptr = NULL;
 	char* token = strtok(command , ",");
@@ -825,16 +826,21 @@ int valid_path(char* heap_file, int length, char* command, int keys_given/*the a
 
 			if (ptr != NULL)
 			{
-				if (strcmp(ptr, token) == 0) //compparing the string to the command entered
+				if (strcmp(ptr, temp->name) == 0)
 				{
-					token = strtok(NULL, ",");
+					temp = temp->next;
 
-					if (!token) //if token is NULL
+					if (strcmp(ptr, token) == 0) //compparing the string to the command entered
 					{
-						if (!(keys_given - count_mesulsal)) //hefresh needs to be equals to 0
-							return 1;
+						token = strtok(NULL, ",");
 
-						return 0;
+						if (!token) //if token is NULL
+						{
+							if (!(keys_given - count_mesulsal)) //hefresh needs to be equals to 0
+								return 1;
+
+							return 0;
+						}
 					}
 				}
 

@@ -33,7 +33,7 @@ struct Value* make_number_value(char* heap_file, int start_index, struct Value* 
 struct Tav* check_colon_list(char* heap_file, struct Tav* head, int length);
 
 //checking if the entered path is the full path to the value, returns 1 if it's a valid path
-int valid_path(char* heap_file, int length, char* command, int keys_given);
+int valid_path(char* heap_file, int length, char* command, int keys_given, struct Key* head);
 
 //returns the length of the string value, with the null byte
 int string_value_length(char* heap_file, int start_index);
@@ -46,3 +46,6 @@ int list_value_length(char* heap_file, int start_index);
 
 //returns the length of the number value, with the null byte
 int number_value_length(char* heap_file, int start_index);
+
+//checking if the user asked for a specific index in list, example: list[0] - returns 1 if it is
+int specific_list_index(char* command);

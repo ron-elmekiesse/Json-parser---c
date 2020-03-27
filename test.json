@@ -31,7 +31,10 @@
       
       "requested_size":"original"
     }
-  ],
+  ]
+
+  ,"my_list":["hey":{"apple":1, "good":100}, "master":"ron", "list":[1,2,3,4,5] ],
+
   "original_file":{
     "name":"i07VJLqZ3bd",
     "size":21258,
