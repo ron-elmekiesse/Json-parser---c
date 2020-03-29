@@ -13,6 +13,10 @@
 #define NUM_INPUT 2
 #define EXIT "exit"
 
+/*
+29.3.2020
+owner of the project - Ron E
+*/
 
 int main(int argc, char* argv[]) // array of strings...
 {
